@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LobbyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::inertia('/', 'Home');
+Route::get('/lobby', [LobbyController::class, 'index']);
+Route::get('/lobby/create', [LobbyController::class, 'create']);
+Route::get('/lobby/join', [LobbyController::class, 'show']);

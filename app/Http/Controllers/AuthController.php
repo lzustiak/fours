@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +13,11 @@ use Inertia\Response;
 
 class AuthController extends Controller
 {
+    public function index(): Response | RedirectResponse
+    {
+        return Inertia::render('Login');
+    }
+
     public function create(): Response
     {
         return Inertia::render('Register');
@@ -22,5 +28,18 @@ class AuthController extends Controller
         User::create($request->validated());
 
         return to_route('home');
+    }
+
+    public function login(LoginRequest $request): RedirectResponse
+    {
+        if (Auth::attempt($request->validated())) {
+            $request->session()->regenerate();
+
+            return to_route('home');
+        }
+
+        return back()->withErrors([
+            'name' => 'User does not exist',
+        ])->onlyInput('name');
     }
 }

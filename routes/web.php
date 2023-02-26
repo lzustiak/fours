@@ -22,4 +22,6 @@ Route::inertia('/', 'Home')->name('home');
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'create'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 });

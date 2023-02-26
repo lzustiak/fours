@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/lobby', [LobbyController::class, 'index'])->name('lobby.index');
     Route::get('/lobby/create', [LobbyController::class, 'create']);
     Route::get('/lobby/join', [LobbyController::class, 'show']);
+
+    Route::get('/logout', [AuthController::class, 'logout']);
 });

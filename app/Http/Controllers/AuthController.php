@@ -42,4 +42,15 @@ class AuthController extends Controller
             'name' => 'User does not exist',
         ])->onlyInput('name');
     }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return to_route('home');
+    }
 }

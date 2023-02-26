@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LobbyController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,7 @@ Route::get('/lobby', [LobbyController::class, 'index']);
 Route::get('/lobby/create', [LobbyController::class, 'create']);
 Route::get('/lobby/join', [LobbyController::class, 'show']);
 Route::inertia('/', 'Home')->name('home');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'create'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+});

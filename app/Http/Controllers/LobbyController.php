@@ -7,11 +7,6 @@ use Inertia\Response;
 
 class LobbyController extends Controller
 {
-    public function index(): Response
-    {
-        return Inertia::render('Lobby/Index');
-    }
-
     public function create(): Response
     {
         return Inertia::render('Lobby/Create');

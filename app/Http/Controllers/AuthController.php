@@ -25,7 +25,11 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        $user = User::create($request->validated());
+
+        Auth::login($user);
+    
+        $request->session()->regenerate();
 
         return to_route('home');
     }

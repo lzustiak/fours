@@ -15,13 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/lobby', [LobbyController::class, 'index']);
-Route::get('/lobby/create', [LobbyController::class, 'create']);
-Route::get('/lobby/join', [LobbyController::class, 'show']);
 Route::inertia('/', 'Home')->name('home');
+
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'create'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/lobby', [LobbyController::class, 'index'])->name('lobby.index');
+    Route::get('/lobby/create', [LobbyController::class, 'create']);
+    Route::get('/lobby/join', [LobbyController::class, 'show']);
 });

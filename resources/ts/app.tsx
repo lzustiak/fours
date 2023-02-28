@@ -1,7 +1,8 @@
-import { createInertiaApp } from '@inertiajs/react';
-import { StrictMode } from 'react';
+import { createInertiaApp } from "@inertiajs/react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import './bootstrap';
+import "./bootstrap";
+import "../css/app.css";
 
 createInertiaApp({
   resolve: (name) => {
@@ -15,7 +16,7 @@ createInertiaApp({
     createRoot(el).render(
       <StrictMode>
         <App {...props} />
-      </StrictMode>
+      </StrictMode>,
     );
   },
 });

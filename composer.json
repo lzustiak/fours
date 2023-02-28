@@ -1,7 +1,5 @@
 {
-    "name": "Fours",
     "type": "project",
-    "description": "Online multiplayer connect four",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {

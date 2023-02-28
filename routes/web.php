@@ -25,9 +25,10 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/lobby', [LobbyController::class, 'index'])->name('lobby.index');
-    Route::get('/lobby/create', [LobbyController::class, 'create']);
-    Route::get('/lobby/join', [LobbyController::class, 'show']);
+    Route::get('/lobby/create', [LobbyController::class, 'index']);
+    Route::get('/lobby/join/{lobby?}', [LobbyController::class, 'edit']);
+    Route::patch('/lobby/{lobby}', [LobbyController::class, 'update']);
+    Route::delete('/lobby/delete/{lobby}', [LobbyController::class, 'destroy']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 });

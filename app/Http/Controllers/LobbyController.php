@@ -15,7 +15,7 @@ class LobbyController extends Controller
     {
         $lobby = $request->user()->host ?: Lobby::create([
             'host_id' => $request->user()->id,
-            'status' => 'waiting',
+            'status' => 'pending',
         ]);
 
         return Inertia::render('Lobby/Create', [
